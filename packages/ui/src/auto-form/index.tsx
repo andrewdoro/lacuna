@@ -16,6 +16,7 @@ import {
   ZodObjectOrWrapped,
 } from "./utils";
 
+export * from "./types";
 export function AutoFormSubmit({
   children,
   className,

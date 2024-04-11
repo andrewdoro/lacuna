@@ -15,6 +15,20 @@
       "when": 1712836965355,
       "tag": "0001_yummy_stellaris",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1712841826989,
+      "tag": "0002_wakeful_silver_sable",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1712842920348,
+      "tag": "0003_vengeful_tag",
+      "breakpoints": true
     }
   ]
 }

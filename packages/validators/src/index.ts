@@ -5,8 +5,10 @@ export const CreatePostSchema = z.object({
   content: z.string().min(1),
 });
 
-export const CreateDomainSchema = z.object({
+export const CreateDomainRequestSchema = z.object({
   name: z.string(),
+  description: z.string(),
+  parentId: z.number().describe("Parent domain").optional(),
 });
 
 export const CreateSkillSchema = z.object({

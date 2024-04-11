@@ -6,12 +6,20 @@ import { CreatePostSchema } from "@acme/validators";
 
 import { protectedProcedure, publicProcedure } from "../trpc";
 
-export const domain = {
+export const domainRouter = {
   all: publicProcedure.query(({ ctx }) => {
     // return ctx.db.select().from(schema.post).orderBy(desc(schema.post.id));
     return ctx.db.query.domain.findMany({
       orderBy: desc(schema.post.id),
       limit: 10,
+    });
+  }),
+  requests: publicProcedure.query(({ ctx }) => {
+    return ctx.db.query.domainRequest.findMany({
+      where: (table, { eq }) => eq(table.status, "pending"),
+      with: {
+        domain: true,
+      },
     });
   }),
 

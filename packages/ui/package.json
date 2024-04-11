@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
+    "./auto-form": "./src/auto-form/index.tsx",
     "./*": "./src/*.tsx"
   },
   "license": "MIT",
