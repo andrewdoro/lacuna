@@ -10,6 +10,10 @@ import { TRPCReactProvider } from "~/trpc/react";
 
 import "~/app/globals.css";
 
+import { MainNav } from "./_components/main-nav";
+import TeamSwitcher from "./_components/project-switch";
+import { UserNav } from "./_components/user-nav";
+
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.VERCEL_ENV === "production"
@@ -49,7 +53,18 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <TRPCReactProvider>{props.children}</TRPCReactProvider>
+          <TRPCReactProvider>
+            <div className="flex flex-col">
+              <div className="flex h-16 items-center border-b px-4">
+                <TeamSwitcher />
+                <MainNav className="mx-6" />
+                <div className="ml-auto flex items-center space-x-4">
+                  <UserNav />
+                </div>
+              </div>
+              {props.children}
+            </div>
+          </TRPCReactProvider>
           <div className="absolute bottom-4 right-4">
             <ThemeToggle />
           </div>
