@@ -15,10 +15,8 @@ export const env = createEnv({
    * This way you can ensure the app isn't built with invalid env vars.
    */
   server: {
-    DB_HOST: z.string(),
-    DB_NAME: z.string(),
-    DB_PASSWORD: z.string(),
-    DB_USERNAME: z.string(),
+    TURSO_CONNECTION_URL: z.string(),
+    TURSO_AUTH_TOKEN: z.string(),
   },
 
   /**
