@@ -10,20 +10,22 @@ import {
 import { H1 } from "@acme/ui/typography";
 
 import { api } from "~/trpc/server";
-import RequestDomainDialog from "./_components/RequestDomainDialog";
+import SkillRequest from "./_components/SkillRequest";
 
 const Domain = async () => {
-  const requests = await api.domain.requests();
+  const requests = await api.skillRequest.all();
   return (
-    <div className="flex flex-col">
-      <H1>Requested domains</H1>
-      <RequestDomainDialog />
+    <div className="mx-auto flex w-full max-w-5xl flex-col">
+      <div className="flex items-center justify-between gap-2">
+        <H1>Requested skills</H1>
+        <SkillRequest />
+      </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-4">
         {requests.map((request) => (
           <Card key={request.id}>
             <CardHeader>
               <CardTitle>{request.name}</CardTitle>
-              <CardDescription>{request.domain.name}</CardDescription>
+              <CardDescription>{request.skill?.name}</CardDescription>
             </CardHeader>
             <CardContent></CardContent>
           </Card>

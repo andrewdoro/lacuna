@@ -13,29 +13,28 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@acme/ui/dialog";
-import { CreateDomainRequestSchema } from "@acme/validators";
+import { CreateSkillRequestSchema } from "@acme/validators";
 
-import DomainSelect from "./DomainSelect";
+import SkillSelect from "./SkillSelect";
 
-const RequestDomainDialog = () => {
+const SkillRequest = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Request domain</Button>
+        <Button>Request skill</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Request domain</DialogTitle>
+          <DialogTitle>Request skill</DialogTitle>
           <DialogDescription>
-            Request a new domain for the platform. Think about why you need
-            this!
+            Request a new skill for the platform. Think about why you need this!
           </DialogDescription>
         </DialogHeader>
         <AutoForm
-          formSchema={CreateDomainRequestSchema}
+          formSchema={CreateSkillRequestSchema}
           fieldConfig={{
-            parentId: {
-              fieldType: DomainSelect,
+            skillId: {
+              fieldType: SkillSelect,
               description: "You can select a parent domain if needed.",
             },
           }}
@@ -50,4 +49,4 @@ const RequestDomainDialog = () => {
   );
 };
 
-export default RequestDomainDialog;
+export default SkillRequest;

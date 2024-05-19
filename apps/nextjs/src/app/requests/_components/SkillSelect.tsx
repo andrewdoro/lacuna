@@ -17,14 +17,14 @@ import {
 
 import { api } from "~/trpc/react";
 
-const DomainSelect = ({
+const SkillSelect = ({
   field,
   fieldConfigItem,
   //   fieldProps,
   isRequired,
   label,
 }: AutoFormInputComponentProps) => {
-  const domains = api.domain.all.useQuery();
+  const { data } = api.skill.all.useQuery();
   return (
     <FormItem>
       <div className="space-y-1 leading-none">
@@ -42,9 +42,9 @@ const DomainSelect = ({
             <SelectValue placeholder="Select an option" />
           </SelectTrigger>
           <SelectContent>
-            {domains.data?.map((domain) => (
-              <SelectItem key={domain.id} value={domain.id.toString()}>
-                {domain.name}
+            {data?.map((skill) => (
+              <SelectItem key={skill.id} value={skill.id.toString()}>
+                {skill.name}
               </SelectItem>
             ))}
           </SelectContent>
@@ -54,4 +54,4 @@ const DomainSelect = ({
   );
 };
 
-export default DomainSelect;
+export default SkillSelect;

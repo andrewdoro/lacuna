@@ -1,12 +1,12 @@
 import { authRouter } from "./router/auth";
-import { domainRouter } from "./router/domain";
-import { postRouter } from "./router/post";
+import { skillRouter } from "./router/skill";
+import { skillRequestRouter } from "./router/skill-request";
 import { createTRPCRouter } from "./trpc";
 
 export const appRouter = createTRPCRouter({
   auth: authRouter,
-  post: postRouter,
-  domain: domainRouter,
+  skill: skillRouter,
+  skillRequest: skillRequestRouter,
 });
 
 // export type definition of API

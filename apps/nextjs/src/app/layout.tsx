@@ -54,14 +54,8 @@ export default function RootLayout(props: { children: React.ReactNode }) {
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TRPCReactProvider>
-            <div className="flex flex-col">
-              <div className="flex h-16 items-center border-b px-4">
-                {/* <TeamSwitcher /> */}
-                {/* <MainNav className="mx-6" /> */}
-                <div className="ml-auto flex items-center space-x-4">
-                  <UserNav />
-                </div>
-              </div>
+            <div className="flex flex-col gap-6">
+              <UserNav />
               {props.children}
             </div>
           </TRPCReactProvider>
