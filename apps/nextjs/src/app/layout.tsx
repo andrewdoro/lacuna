@@ -10,9 +10,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 
 import "~/app/globals.css";
 
-import { MainNav } from "./_components/main-nav";
-import TeamSwitcher from "./_components/project-switch";
-import { UserNav } from "./_components/user-nav";
+import { Navbar } from "./_components/navbar";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -55,13 +53,10 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TRPCReactProvider>
             <div className="flex flex-col gap-6">
-              <UserNav />
-              {props.children}
+              <Navbar />
+              <main className="px-4">{props.children}</main>
             </div>
           </TRPCReactProvider>
-          <div className="absolute bottom-4 right-4">
-            <ThemeToggle />
-          </div>
           <Toaster />
         </ThemeProvider>
       </body>

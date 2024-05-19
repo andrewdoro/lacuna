@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
 import AutoForm, { AutoFormSubmit } from "@acme/ui/auto-form";
 import { Button } from "@acme/ui/button";
@@ -15,9 +15,16 @@ import {
 } from "@acme/ui/dialog";
 import { CreateSkillRequestSchema } from "@acme/validators";
 
+import { api } from "~/trpc/react";
 import SkillSelect from "./SkillSelect";
 
 const SkillRequest = () => {
+  const [open, setOpen] = useState(false);
+  const create = api.skillRequest.create.useMutation({
+    onSuccess: () => {
+      setOpen(false);
+    },
+  });
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -32,6 +39,10 @@ const SkillRequest = () => {
         </DialogHeader>
         <AutoForm
           formSchema={CreateSkillRequestSchema}
+          onSubmit={(values) => {
+            console.log(values);
+            create.mutate(values);
+          }}
           fieldConfig={{
             skillId: {
               fieldType: SkillSelect,
@@ -41,7 +52,9 @@ const SkillRequest = () => {
         >
           <DialogFooter>
             <Button variant="outline">Cancel</Button>
-            <AutoFormSubmit>Submit</AutoFormSubmit>
+            <Button type="submit" isLoading>
+              Submit
+            </Button>
           </DialogFooter>
         </AutoForm>
       </DialogContent>
