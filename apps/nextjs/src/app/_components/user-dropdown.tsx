@@ -1,12 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import {
-  Building,
-  GithubIcon,
-  GoalIcon,
-  Sparkle,
-  Sparkles,
-} from "lucide-react";
+import { GoalIcon } from "lucide-react";
 
 import { auth, signIn } from "@acme/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@acme/ui/avatar";
@@ -28,7 +22,6 @@ const UserDropdown = async () => {
   if (!session)
     return (
       <div className="flex gap-2">
-        {" "}
         <form
           action={async () => {
             "use server";
@@ -45,12 +38,6 @@ const UserDropdown = async () => {
 
   return (
     <div className="flex items-center gap-2">
-      {/* <Link href="/chat" className="hidden md:flex">
-            <Button className="gap-2 rounded-full" variant="outline">
-            <Icon as={Sparkles} />
-            AI GF
-            </Button>
-        </Link> */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Avatar className="h-8 w-8 cursor-pointer rounded-full">

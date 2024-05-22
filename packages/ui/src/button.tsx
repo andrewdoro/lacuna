@@ -53,7 +53,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        <span className={cn(isLoading && "invisible")}>{props.children}</span>
+        <span
+          className={cn("flex items-center gap-1", isLoading && "invisible")}
+        >
+          {props.children}
+        </span>
         {isLoading && (
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <Spinner />

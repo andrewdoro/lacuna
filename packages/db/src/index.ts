@@ -6,6 +6,7 @@ import { drizzle } from "drizzle-orm/libsql";
 import { env } from "./config";
 import * as auth from "./schema/auth";
 import * as post from "./schema/post";
+import * as project from "./schema/project";
 import * as skill from "./schema/skill";
 import * as skillRequest from "./schema/skill-request";
 
@@ -17,6 +18,7 @@ export const schema = {
   ...post,
   ...skill,
   ...skillRequest,
+  ...project,
 };
 
 const client = createClient({
