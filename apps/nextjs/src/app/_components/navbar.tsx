@@ -7,7 +7,7 @@ export function Navbar() {
     <div className="w-full border-b px-4">
       <div className="mx-auto flex h-16 max-w-5xl items-center gap-2">
         <Link
-          href="/"
+          href="/project"
           className="text-sm font-medium transition-colors hover:text-primary"
         >
           Projects

@@ -1,7 +1,7 @@
 import type { TRPCRouterRecord } from "@trpc/server";
 import { z } from "zod";
 
-import { schema } from "@acme/db";
+import { schema } from "@acme/db/schema";
 import { CreateSkillRequestSchema } from "@acme/validators";
 
 import { protectedProcedure, publicProcedure } from "../trpc";

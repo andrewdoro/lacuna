@@ -4,8 +4,9 @@ import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const skill = sqliteTable("skill", {
   id: integer("id").primaryKey({ autoIncrement: true }),
-  name: text("name").unique(),
+  name: text("name").unique().notNull(),
   description: text("description"),
+  level: integer("level"),
   skillId: integer("skill_id").references((): AnySQLiteColumn => skill.id),
 });
 

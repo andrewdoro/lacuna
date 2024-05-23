@@ -4,9 +4,9 @@ import {
   primaryKey,
   sqliteTable,
   text,
-  unique,
 } from "drizzle-orm/sqlite-core";
 
+import { users } from "./auth";
 import { skill } from "./skill";
 
 export const project = sqliteTable("project", {
@@ -18,11 +18,36 @@ export const project = sqliteTable("project", {
   description: text("description"),
 });
 
+export const projectRoles = sqliteTable(
+  "project_role",
+  {
+    userId: integer("user_id").references(() => skill.id),
+    projectId: integer("project_id").references(() => project.id),
+    role: text("role", { enum: ["plebe", "senator", "consul"] }),
+  },
+  (role) => ({
+    projectRolesKey: primaryKey({
+      columns: [role.userId, role.projectId],
+    }),
+  }),
+);
+
+export const projectRolesRelations = relations(projectRoles, ({ one }) => ({
+  project: one(project, {
+    fields: [projectRoles.projectId],
+    references: [project.id],
+  }),
+  user: one(users, {
+    fields: [projectRoles.userId],
+    references: [users.id],
+  }),
+}));
+
 export const projectSkills = sqliteTable(
   "projectSkill",
   {
-    projectId: integer("projectId").references(() => project.id),
-    skillId: integer("skillId").references(() => skill.id),
+    projectId: integer("project_id").references(() => project.id),
+    skillId: integer("skill_id").references(() => skill.id),
     ratio: integer("ratio"),
   },
   (projectSkill) => ({
@@ -45,4 +70,5 @@ export const projectSkillRelations = relations(projectSkills, ({ one }) => ({
 
 export const projectRelations = relations(project, ({ many }) => ({
   skills: many(projectSkills),
+  members: many(projectRoles),
 }));

@@ -7,6 +7,8 @@ import {
   text,
 } from "drizzle-orm/sqlite-core";
 
+import { projectRoles } from "./project";
+
 export const users = sqliteTable("user", {
   id: text("id", { length: 255 }).notNull().primaryKey(),
   name: text("name", { length: 255 }),
@@ -17,6 +19,7 @@ export const users = sqliteTable("user", {
 
 export const usersRelations = relations(users, ({ many }) => ({
   accounts: many(accounts),
+  roles: many(projectRoles),
 }));
 
 export const accounts = sqliteTable(

@@ -1,8 +1,11 @@
 import type { TRPCRouterRecord } from "@trpc/server";
 
-import { publicProcedure } from "../trpc";
+import { schema } from "@acme/db/schema";
+import { CreateProjectSchema } from "@acme/validators";
 
-export const skillRouter = {
+import { protectedProcedure, publicProcedure } from "../trpc";
+
+export const projectRouter = {
   all: publicProcedure.query(({ ctx }) => {
     return ctx.db.query.project.findMany({
       with: {
@@ -14,4 +17,9 @@ export const skillRouter = {
       },
     });
   }),
+  create: protectedProcedure
+    .input(CreateProjectSchema)
+    .mutation(({ ctx, input }) => {
+      return ctx.db.insert(schema.project).values(input);
+    }),
 } satisfies TRPCRouterRecord;

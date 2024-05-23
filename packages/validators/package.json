@@ -19,6 +19,8 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
+    "@acme/db": "workspace:*",
+    "drizzle-zod": "^0.5.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
